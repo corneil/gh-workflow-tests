@@ -1,0 +1,52 @@
+on:
+    workflow_call:
+
+jobs:
+    host-A-env-0:
+        uses: ./.github/workflows/common-workflow.yml
+        with:
+            host: A
+            env_index: 0
+    host-A-env-1:
+        uses: ./.github/workflows/common-workflow.yml
+        with:
+            host: A
+            env_index: 1
+    host-A-env-2:
+        uses: ./.github/workflows/common-workflow.yml
+        with:
+            host: A
+            env_index: 2
+    host-B-env-0:
+        uses: ./.github/workflows/common-workflow.yml
+        with:
+            host: B
+            env_index: 0
+    host-B-env-1:
+        uses: ./.github/workflows/common-workflow.yml
+        with:
+            host: B
+            env_index: 1
+    host-B-env-2:
+        uses: ./.github/workflows/common-workflow.yml
+        with:
+            host: B
+            env_index: 2
+    completed-0:
+        needs: [ host-A-env-0, host-B-env-0 ]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Completed Env 0
+              run: echo "Completed env-0"
+    completed-1:
+        needs: [ host-A-env-1, host-B-env-1 ]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Completed Env 1
+              run: echo "Completed env-1"
+    completed-2:
+        needs: [ host-A-env-2, host-B-env-2 ]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Completed Env 2
+              run: echo "Completed env-2"

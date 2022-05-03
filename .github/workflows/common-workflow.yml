@@ -1,0 +1,24 @@
+name: Common Workflow
+
+# Controls when the workflow will run
+on:
+    workflow_call:
+        inputs:
+            host:
+                required: true
+                type: string
+            env_index:
+                required: true
+                type: string
+jobs:
+    workflow-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: print and wait
+              env:
+                ENV_HOST: ${{ inputs.host }}
+                ENV_NUMBER: ${{ inputs.environment }}
+              run: |
+                echo "Starting Host = $ENV_HOST, Env = $ENV_NUMBER"
+                echo sleep 5m
+                echo "Completed Host = $ENV_HOST, Env = $ENV_NUMBER"
