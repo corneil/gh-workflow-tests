@@ -19,4 +19,4 @@ jobs:
               env:
                 ENV_HOST: ${{ inputs.host }}
                 ENV_NUMBER: ${{ inputs.env_index }}
-              run: ./job-script.sh
+              run: sh ./job-script.sh
