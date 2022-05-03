@@ -20,5 +20,5 @@ jobs:
                 ENV_NUMBER: ${{ inputs.environment }}
               run: |
                 echo "Starting Host = $ENV_HOST, Env = $ENV_NUMBER"
-                echo sleep 5m
+                echo sleep 180
                 echo "Completed Host = $ENV_HOST, Env = $ENV_NUMBER"
