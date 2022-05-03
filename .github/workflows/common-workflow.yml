@@ -17,7 +17,7 @@ jobs:
             - name: print and wait
               env:
                 ENV_HOST: ${{ inputs.host }}
-                ENV_NUMBER: ${{ inputs.environment }}
+                ENV_NUMBER: ${{ inputs.env_index }}
               run: |
                 echo "Starting Host = $ENV_HOST, Env = $ENV_NUMBER"
                 echo sleep 180
