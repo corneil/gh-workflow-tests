@@ -19,16 +19,19 @@ jobs:
             host: A
             env_index: 2
     host-B-env-0:
+        needs: [ host-A-env-0 ]
         uses: ./.github/workflows/common-workflow.yml
         with:
             host: B
             env_index: 0
     host-B-env-1:
+        needs: [ host-A-env-0 ]
         uses: ./.github/workflows/common-workflow.yml
         with:
             host: B
             env_index: 1
     host-B-env-2:
+        needs: [ host-A-env-2 ]
         uses: ./.github/workflows/common-workflow.yml
         with:
             host: B
