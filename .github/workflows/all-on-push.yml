@@ -1,0 +1,7 @@
+name: Start on Push
+
+on: push
+jobs:
+    execute-on-push:
+        uses: ./.github/workflows/all-workflows.yml
+

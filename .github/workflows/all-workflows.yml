@@ -1,6 +1,6 @@
 name: Starting Workflow
 
-on: workflow_dispatch
+on: workflow_call
 
 jobs:
     host-A-env-0:
