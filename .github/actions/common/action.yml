@@ -1,11 +1,18 @@
 name: 'Invoke:${{ inputs.host }}-${{ inputs.env_index }}'
 description: 'Invokes tests on host and specific environment'
+inputs:
+  host:
+    description: 'Host name'
+    required: true
+  env_index:
+    description: 'Environment number'
+    required: true
 runs:
   using: composite
   steps:
-    - name: print and wait
-      uses: actions/checkout@v3
-      env:
-        ENV_HOST: ${{ inputs.host }}
-        ENV_NUMBER: ${{ inputs.env_index }}
-      run: sh ./job-script.sh
+  - name: print and wait
+    uses: actions/checkout@v3
+    env:
+      ENV_HOST: ${{ inputs.host }}
+      ENV_NUMBER: ${{ inputs.env_index }}
+    run: sh ./job-script.sh
