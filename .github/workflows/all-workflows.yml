@@ -12,9 +12,9 @@ jobs:
       matrix:
         host: [A, B]
         env_index: [0, 1, 2]
+    concurrency: 'env-${{ matrix.env_index }}'
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/common-workflow.yml
+      - uses: ./.github/actions/common
         with:
           host: ${{ matrix.host }}
           env_index: ${{ matrix.env_index }}
