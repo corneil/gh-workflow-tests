@@ -18,29 +18,18 @@ jobs:
           host: ${{ matrix.host }}
           env_index: ${{ matrix.env_index }}
 
-  completed-0:
-    needs: [ host-A-env-0, host-B-env-0 ]
+  completed:
+    needs: [ exec-host-env ]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env_index: [ 0, 1, 2 ]
     steps:
-      - name: Cleanup Env 0
+      - name: Cleanup Env ${{ matrix.env_index}}
         if: ${{ always() }}
-        run: echo "Cleanup env-0"
-  completed-1:
-    needs: [ host-A-env-1, host-B-env-1 ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cleanup Env 1
-        if: ${{ always() }}
-        run: echo "Cleanup env-1"
-  completed-2:
-    needs: [ host-A-env-2, host-B-env-2 ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cleanup Env 2
-        if: ${{ always() }}
-        run: echo "Cleanup env-2"
+        run: echo "Cleanup env-${{ matrix.env_index}}"
   final_cleanup:
-    needs: [ completed-0, completed-1, completed-2 ]
+    needs: [ completed ]
     runs-on: ubuntu-latest
     steps:
       - name: Final Cleanup
