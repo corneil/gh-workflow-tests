@@ -34,10 +34,9 @@ jobs:
         run: echo "Cleanup env-${{ matrix.env_index}}"
   final_cleanup:
     if: ${{ always() }}
-    needs: [ completed ]
+    needs: [ env-cleanup ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Final Cleanup
         if: ${{ always() }}
         run: echo "Final Cleanup"
