@@ -41,7 +41,7 @@ jobs:
           env_index: ${{ matrix.env_index }}
   # cleans up the environments
   env-cleanup:
-    name: 'Environment Cleanup'
+    name: 'Delete namespaces'
     if: ${{ always() }}
     needs: [ exec-host-env ]
     runs-on: ubuntu-latest
@@ -53,6 +53,7 @@ jobs:
         if: ${{ always() }}
         run: echo "Cleanup env-${{ matrix.env_index}}"
   final_cleanup:
+    name: 'Delete Cluster'
     if: ${{ always() }}
     needs: [ env-cleanup ]
     runs-on: ubuntu-latest
