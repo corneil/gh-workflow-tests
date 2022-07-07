@@ -5,7 +5,15 @@ on:
   push:
 
 jobs:
+  create-env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        shell: bash
+        run: echo "Creating cluster"
   exec-host-env:
+    name: 'Executing on environments'
+    needs: [ create-env ]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
