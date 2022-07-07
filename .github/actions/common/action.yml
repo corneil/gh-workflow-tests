@@ -1,4 +1,4 @@
-name: 'Invoke:${{ inputs.host }}-${{ inputs.env_index }}'
+name: 'Invoke Test on Host and Env'
 description: 'Invokes tests on host and specific environment'
 inputs:
   host:
