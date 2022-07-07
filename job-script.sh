@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 echo "Starting Host = $ENV_HOST, Env = $ENV_NUMBER at $(date)"
 MUL=$(expr 1 + $ENV_NUMBER)
-TIME=$(expr 30 * $MUL)
+TIME=$(expr 30 \* $MUL)
+echo "Sleeping: $TIME seconds"
 sleep ${TIME}s
 echo "Completed Host = $ENV_HOST, Env = $ENV_NUMBER at $(date)"
