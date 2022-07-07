@@ -14,7 +14,7 @@ jobs:
         run: echo "Creating cluster"
   exec-host-env:
     name: 'Executing on environments'
-    needs: [ create-namespaces ]
+    needs: [ create-env ]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -30,7 +30,7 @@ jobs:
   final_cleanup:
     name: 'Delete Cluster'
     if: ${{ always() }}
-    needs: [ env-cleanup ]
+    needs: [ env-host-env ]
     runs-on: ubuntu-latest
     steps:
       - name: Final Cleanup
