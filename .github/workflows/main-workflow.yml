@@ -12,15 +12,6 @@ jobs:
       - name: 'Creating cluster'
         shell: bash
         run: echo "Creating cluster"
-  create-namespaces:
-    name: 'Create namespaces'
-    needs: [ create-env ]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        env_index: [ 0, 1, 2 ]
-    steps:
-      - run: echo "Creating namespace ${{ matrix.env_index }}"
   exec-host-env:
     name: 'Executing on environments'
     needs: [ create-namespaces ]
@@ -30,28 +21,12 @@ jobs:
       matrix:
         host: [ A, B ]
         env_index: [ 0, 1, 2 ]
-    concurrency:
-      group: env-${{ matrix.env_index }}
-      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/common
         with:
           host: ${{ matrix.host }}
           env_index: ${{ matrix.env_index }}
-  # cleans up the environments
-  env-cleanup:
-    name: 'Delete namespaces'
-    if: ${{ always() }}
-    needs: [ exec-host-env ]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        env_index: [ 0, 1, 2 ]
-    steps:
-      - name: 'Cleanup Env ${{ matrix.env_index }}'
-        if: ${{ always() }}
-        run: echo "Cleanup env-${{ matrix.env_index}}"
   final_cleanup:
     name: 'Delete Cluster'
     if: ${{ always() }}

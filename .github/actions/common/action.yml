@@ -10,9 +10,16 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: 'Create Namespace'
+      shell: bash
+      run: echo "Create namespace ${{ inputs.host }}-${{ inputs.env_index }}"
     - name: print and wait
       env:
         ENV_HOST: ${{ inputs.host }}
         ENV_NUMBER: ${{ inputs.env_index }}
       shell: bash
       run: sh ./job-script.sh
+    - name: 'Delete Namespace'
+      if: ${{ always() }}
+      shell: bash
+      run: echo "Delete namespace ${{ inputs.host }}-${{ inputs.env_index }}"
