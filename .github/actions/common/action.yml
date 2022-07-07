@@ -19,8 +19,8 @@ runs:
         ENV_NUMBER: ${{ inputs.env_index }}
       shell: bash
       run: |
-        set -e 
-        sh ./job-script.sh
+        bash ./job-script.sh
+        exit $?
     - name: 'Delete Namespace'
       if: ${{ always() }}
       shell: bash
