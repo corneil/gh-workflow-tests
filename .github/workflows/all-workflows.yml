@@ -16,11 +16,13 @@ jobs:
     needs: [ create-env ]
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 6
       fail-fast: false
       matrix:
         host: [ A, B ]
         env_index: [ 0, 1, 2 ]
-    concurrency: 'env-${{ matrix.env_index }}'
+    concurrency:
+      group: env-${{ matrix.env_index }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/common
