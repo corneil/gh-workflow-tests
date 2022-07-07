@@ -11,8 +11,8 @@ runs:
   using: composite
   steps:
   - name: print and wait
-    uses: actions/checkout@v3
     env:
       ENV_HOST: ${{ inputs.host }}
       ENV_NUMBER: ${{ inputs.env_index }}
+    shell: bash
     run: sh ./job-script.sh
