@@ -13,6 +13,7 @@ jobs:
         host: [A, B]
         env_index: [0, 1, 2]
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/workflows/common-workflow.yml
         with:
           host: ${{ matrix.host }}
@@ -25,6 +26,7 @@ jobs:
       matrix:
         env_index: [ 0, 1, 2 ]
     steps:
+      - uses: actions/checkout@v3
       - name: Cleanup Env ${{ matrix.env_index}}
         if: ${{ always() }}
         run: echo "Cleanup env-${{ matrix.env_index}}"
@@ -32,6 +34,7 @@ jobs:
     needs: [ completed ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Final Cleanup
         if: ${{ always() }}
         run: echo "Final Cleanup"
