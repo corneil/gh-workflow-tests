@@ -32,6 +32,7 @@ jobs:
         env_index: [ 0, 1, 2 ]
     concurrency:
       group: env-${{ matrix.env_index }}
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/common
