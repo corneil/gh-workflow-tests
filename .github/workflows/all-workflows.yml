@@ -19,19 +19,21 @@ jobs:
         with:
           host: ${{ matrix.host }}
           env_index: ${{ matrix.env_index }}
-
-  completed:
+  # cleans up the environments
+  env-cleanup:
+    name: 'Environment Cleanup'
+    if: ${{ always() }}
     needs: [ exec-host-env ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
         env_index: [ 0, 1, 2 ]
     steps:
-      - uses: actions/checkout@v3
-      - name: Cleanup Env ${{ matrix.env_index}}
+      - name: 'Cleanup Env ${{ matrix.env_index}}'
         if: ${{ always() }}
         run: echo "Cleanup env-${{ matrix.env_index}}"
   final_cleanup:
+    if: ${{ always() }}
     needs: [ completed ]
     runs-on: ubuntu-latest
     steps:

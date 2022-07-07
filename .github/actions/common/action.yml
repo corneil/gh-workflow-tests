@@ -10,9 +10,9 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: print and wait
-    env:
-      ENV_HOST: ${{ inputs.host }}
-      ENV_NUMBER: ${{ inputs.env_index }}
-    shell: bash
-    run: sh ./job-script.sh
+    - name: print and wait
+      env:
+        ENV_HOST: ${{ inputs.host }}
+        ENV_NUMBER: ${{ inputs.env_index }}
+      shell: bash
+      run: sh ./job-script.sh
