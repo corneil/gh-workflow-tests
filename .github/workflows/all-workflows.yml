@@ -14,6 +14,7 @@ jobs:
         env_index: [0, 1, 2]
     concurrency: 'env-${{ matrix.env_index }}'
     steps:
+      - uses: actions/checkout@v2
       - uses: ./.github/actions/common
         with:
           host: ${{ matrix.host }}
